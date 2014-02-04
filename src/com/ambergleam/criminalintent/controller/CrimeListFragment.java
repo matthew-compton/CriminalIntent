@@ -1,9 +1,14 @@
-package com.ambergleam.criminalintent;
+package com.ambergleam.criminalintent.controller;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Locale;
 
+import com.ambergleam.criminalintent.R;
+import com.ambergleam.criminalintent.model.Crime;
+import com.ambergleam.criminalintent.model.CrimeLab;
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
 import android.util.Log;
@@ -17,6 +22,7 @@ import android.widget.TextView;
 public class CrimeListFragment extends ListFragment {
 
 	private static final String TAG = "CrimeListFragment";
+	private static final int REQUEST_CRIME = 1;
 
 	private ArrayList<Crime> mCrimes;
 
@@ -29,13 +35,32 @@ public class CrimeListFragment extends ListFragment {
 		CrimeAdapter adapter = new CrimeAdapter(mCrimes);
 		setListAdapter(adapter);
 	}
+	
+	@Override
+	public void onResume() {
+		super.onResume();
+		((CrimeAdapter)getListAdapter()).notifyDataSetChanged();
+	}
 
 	@Override
 	public void onListItemClick(ListView l, View v, int position, long id) {
+		// Get the Crime from the adapter
 		Crime c = ((CrimeAdapter) getListAdapter()).getItem(position);
 		Log.d(TAG, c.getTitle() + " was clicked.");
+		
+		// Start CrimeActivity
+		Intent i = new Intent(getActivity(), CrimeActivity.class);
+		i.putExtra(CrimeFragment.EXTRA_CRIME_ID, c.getId());
+		startActivityForResult(i, REQUEST_CRIME);
 	}
 
+	@Override
+	public void onActivityResult(int requestCode, int resultCode, Intent data) {
+		if (requestCode == REQUEST_CRIME) {
+			// Handle result
+		}
+	}
+	
 	private class CrimeAdapter extends ArrayAdapter<Crime> {
 
 		public CrimeAdapter(ArrayList<Crime> crimes) {

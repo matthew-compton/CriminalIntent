@@ -1,4 +1,4 @@
-package com.ambergleam.criminalintent;
+package com.ambergleam.criminalintent.model;
 
 import java.util.Date;
 import java.util.UUID;

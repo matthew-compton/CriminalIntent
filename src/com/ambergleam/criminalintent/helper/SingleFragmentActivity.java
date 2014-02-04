@@ -1,4 +1,6 @@
-package com.ambergleam.criminalintent;
+package com.ambergleam.criminalintent.helper;
+
+import com.ambergleam.criminalintent.R;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;

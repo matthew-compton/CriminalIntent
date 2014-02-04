@@ -1,4 +1,6 @@
-package com.ambergleam.criminalintent;
+package com.ambergleam.criminalintent.controller;
+
+import com.ambergleam.criminalintent.helper.SingleFragmentActivity;
 
 import android.support.v4.app.Fragment;
 
