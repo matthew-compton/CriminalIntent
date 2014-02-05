@@ -14,6 +14,7 @@ import android.support.v4.app.DialogFragment;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.DatePicker.OnDateChangedListener;
+import android.widget.TimePicker;
 
 import com.ambergleam.criminalintent.R;
 
@@ -58,6 +59,19 @@ public class DatePickerFragment extends DialogFragment {
 				getArguments().putSerializable(EXTRA_DATE, mDate);
 			}
 
+		});
+		
+		TimePicker timePicker = (TimePicker) v.findViewById(R.id.dialog_date_timePicker);
+		timePicker.setOnTimeChangedListener(new TimePicker.OnTimeChangedListener() {
+			
+			@Override
+			public void onTimeChanged(TimePicker view, int hourOfDay, int minute) {
+				// Translate year, month, day into a Date object using a calendar
+				mDate = new GregorianCalendar(year, month, day, hour, minute, second).getTime();
+
+				// Update argument to preserve the selected value on rotation
+				getArguments().putSerializable(EXTRA_DATE, mDate);
+			}
 		});
 
 		return new AlertDialog.Builder(getActivity())

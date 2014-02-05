@@ -9,9 +9,9 @@
     <string name="crime_title_hint">Enter a title for the crime.</string>
     <string name="crime_details_label">Details</string>
     <string name="crime_solved_label">Solved/?</string>
-    <string name="date_picker_title">Date of crime:</string>
+    <string name="date_picker_title">Date and time of crime:</string>
 
     <!-- Constants -->
-    <string name="date_formatting">MMM dd yyyy</string>
+    <string name="date_formatting">MM/dd/yyyy hh:mm aa z</string>
     
 </resources>
