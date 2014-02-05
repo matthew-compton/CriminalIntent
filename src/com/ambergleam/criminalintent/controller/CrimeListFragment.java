@@ -81,7 +81,7 @@ public class CrimeListFragment extends ListFragment {
 			titleTextView.setText(c.getTitle());
 			
 			TextView dateTextView = (TextView)convertView.findViewById(R.id.crime_list_item_dateTextView);
-			SimpleDateFormat sdf = new SimpleDateFormat("EEE, MMM dd, yyyy", Locale.US);
+			SimpleDateFormat sdf = new SimpleDateFormat(getActivity().getString(R.string.date_formatting), Locale.US);
 			String date = sdf.format(c.getDate());
 			dateTextView.setText(date);
 			
