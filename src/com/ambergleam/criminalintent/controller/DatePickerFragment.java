@@ -12,6 +12,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.DatePicker;
 import android.widget.DatePicker.OnDateChangedListener;
 import android.widget.TimePicker;
@@ -78,12 +79,21 @@ public class DatePickerFragment extends DialogFragment {
 
 		});
 
-		return new AlertDialog.Builder(getActivity()).setView(v).setTitle(R.string.date_picker_title).setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+		AlertDialog ad = new AlertDialog.Builder(getActivity()).setView(v).setTitle(R.string.date_picker_title).setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
 				sendResult(Activity.RESULT_OK);
 			}
 		}).create();
+		ad.show();
+
+		WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
+		lp.copyFrom(ad.getWindow().getAttributes());
+		lp.width = WindowManager.LayoutParams.MATCH_PARENT;
+		lp.height = WindowManager.LayoutParams.MATCH_PARENT;
+		ad.getWindow().setAttributes(lp);
+
+		return ad;
 
 	}
 
