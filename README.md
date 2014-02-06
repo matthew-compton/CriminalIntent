@@ -1,4 +1,4 @@
 CriminalIntent
 ==============
 
-"Android Programming: The Big Nerd Ranch Guide" Chapter 7-12 Example App
+"Android Programming: The Big Nerd Ranch Guide" Chapter 7-22 Example App
