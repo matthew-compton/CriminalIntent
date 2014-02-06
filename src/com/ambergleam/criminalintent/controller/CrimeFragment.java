@@ -16,6 +16,8 @@ import android.support.v4.app.NavUtils;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -46,8 +48,12 @@ public class CrimeFragment extends Fragment {
 		super.onCreate(savedInstanceState);
 		setHasOptionsMenu(true);
 
+		getActivity().setTitle(R.string.crime_title);
+		
 		UUID crimeId = (UUID) getArguments().getSerializable(EXTRA_CRIME_ID);
 		mCrime = CrimeLab.get(getActivity()).getCrime(crimeId);
+		
+		setRetainInstance(true);
 	}
 
 	public static CrimeFragment newInstance(UUID crimeId) {
@@ -148,6 +154,10 @@ public class CrimeFragment extends Fragment {
 				NavUtils.navigateUpFromSameTask(getActivity());
 			}
 			return true;
+		case R.id.menu_item_remove_crime:
+			CrimeLab.get(getActivity()).deleteCrime(mCrime);
+			NavUtils.navigateUpFromSameTask(getActivity());
+			return true;
 		default:
 			return super.onOptionsItemSelected(item);
 		}
@@ -157,6 +167,13 @@ public class CrimeFragment extends Fragment {
 	public void onPause() {
 		super.onPause();
 		CrimeLab.get(getActivity()).saveCrimes();
+	}
+
+	
+	@Override
+	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+		super.onCreateOptionsMenu(menu, inflater);
+		inflater.inflate(R.menu.fragment_crime, menu);
 	}
 
 }

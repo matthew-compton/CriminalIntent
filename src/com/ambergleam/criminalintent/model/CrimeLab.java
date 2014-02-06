@@ -50,6 +50,10 @@ public class CrimeLab {
 		}
 	}
 
+	public void deleteCrime(Crime c) {
+		mCrimes.remove(c);
+	}
+
 	public ArrayList<Crime> getCrimes() {
 		return mCrimes;
 	}

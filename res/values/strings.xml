@@ -4,6 +4,7 @@
     <string name="app_name">CriminalIntent</string>
 
     <!-- fragment_crime -->
+    <string name="crime_title">Crime</string>
     <string name="crimes_title">Crimes</string>
     <string name="crime_title_label">Title</string>
     <string name="crime_title_hint">Enter a title for the crime.</string>
