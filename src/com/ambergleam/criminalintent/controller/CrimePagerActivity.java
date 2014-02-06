@@ -14,7 +14,7 @@ import com.ambergleam.criminalintent.R;
 import com.ambergleam.criminalintent.model.Crime;
 import com.ambergleam.criminalintent.model.CrimeLab;
 
-public class CrimePagerActivity extends FragmentActivity {
+public class CrimePagerActivity extends FragmentActivity implements CrimeFragment.Callbacks {
 
 	public static final int OFF_SCREEN_PAGE_LIMIT = 2;
 
@@ -75,6 +75,10 @@ public class CrimePagerActivity extends FragmentActivity {
 
 		});
 
+	}
+
+	@Override
+	public void onCrimeUpdated(Crime crime) {
 	}
 
 }

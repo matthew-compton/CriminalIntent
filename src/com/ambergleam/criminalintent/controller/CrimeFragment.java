@@ -50,6 +50,27 @@ public class CrimeFragment extends Fragment {
 	private Button mDateButton, mSuspectButton, mReportButton;
 	private CheckBox mSolvedCheckBox;
 
+	private Callbacks mCallbacks;
+
+	/*
+	 * Required interface for hosting activities
+	 */
+	public interface Callbacks {
+		void onCrimeUpdated(Crime crime);
+	}
+
+	@Override
+	public void onAttach(Activity activity) {
+		super.onAttach(activity);
+		mCallbacks = (Callbacks) activity;
+	}
+
+	@Override
+	public void onDetach() {
+		super.onDetach();
+		mCallbacks = null;
+	}
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -87,7 +108,7 @@ public class CrimeFragment extends Fragment {
 				getActivity().getActionBar().setDisplayHomeAsUpEnabled(true);
 			}
 		}
-		
+
 		mTitleField = (EditText) v.findViewById(R.id.crime_title);
 		mTitleField.setText(mCrime.getTitle());
 		mTitleField.addTextChangedListener(new TextWatcher() {
@@ -95,6 +116,7 @@ public class CrimeFragment extends Fragment {
 			@Override
 			public void onTextChanged(CharSequence s, int start, int before, int count) {
 				mCrime.setTitle(s.toString());
+				mCallbacks.onCrimeUpdated(mCrime);
 			}
 
 			@Override
@@ -129,6 +151,7 @@ public class CrimeFragment extends Fragment {
 			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 				// Set the crime's solved property
 				mCrime.setSolved(isChecked);
+				mCallbacks.onCrimeUpdated(mCrime);
 			}
 
 		});
@@ -200,6 +223,7 @@ public class CrimeFragment extends Fragment {
 		if (requestCode == REQUEST_DATE) {
 			Date date = (Date) data.getSerializableExtra(DatePickerFragment.EXTRA_DATE);
 			mCrime.setDate(date);
+			mCallbacks.onCrimeUpdated(mCrime);
 			updateDate();
 		} else if (requestCode == REQUEST_CONTACT) {
 			Uri contactUri = data.getData();
@@ -220,6 +244,7 @@ public class CrimeFragment extends Fragment {
 			String suspect = c.getString(0);
 			mCrime.setSuspect(suspect);
 			mSuspectButton.setText(suspect);
+			mCallbacks.onCrimeUpdated(mCrime);
 			c.close();
 		}
 	}
