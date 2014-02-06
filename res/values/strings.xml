@@ -10,8 +10,15 @@
     <string name="crime_details_label">Details</string>
     <string name="crime_solved_label">Solved/?</string>
     <string name="date_picker_title">Date and time of crime:</string>
+    <string name="no_crimes">There are no crimes.</string>
+    <string name="report_crime">Report a crime.</string>
+    <string name="new_crime">New Crime</string>
+    <string name="show_subtitle">Show Subtitle</string>
+    <string name="hide_subtitle">Hide Subtitle</string>
+    <string name="subtitle">If you see something, say something.</string>
+    <string name="delete_crime">Delete</string>
 
     <!-- Constants -->
     <string name="date_formatting">MM/dd/yyyy hh:mm aa z</string>
-    
+
 </resources>
